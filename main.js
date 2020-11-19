@@ -33,20 +33,20 @@ const handleFormSubmit = (e) => {
 
     const elementIndex = players.findIndex(el => el.name == username)
     if (elementIndex != -1) {
-        let newArr = [...players]
-        newArr[elementIndex] = {...newArr[elementIndex], points:newArr[elementIndex].points.push(point)}
+        players[elementIndex].points.push(point)
+        console.log(players[elementIndex]);
     } else {
         players.push({name:username, points:[point]})
     }
     localStorage.setItem('Players', JSON.stringify(players));
-
     location.reload()
 }
 
 const showListResults = () => {
     const players = JSON.parse(localStorage.getItem('Players'));
     players && players.map(({name, points}) => {
-        playerList.innerHTML += `<ul class="list-group"><li class="list-group-item my-1">${name} <span class="d-block pl-2">${points}</span></li> </ul>`
+        playerList.innerHTML += 
+            `<ul class="list-group"><li class="list-group-item my-1">${name} <span class="d-block pl-2">${points}</span></li> </ul>`
     })
 }
 
@@ -67,13 +67,18 @@ const setStyleToPlayBlock = (element, sizePlayBlock) => {
     sizePlayBlock = sizePlayBlock == 1 ? 50 : 50 + (sizePlayBlock - 1) * 10
     element.style.width = `${sizePlayBlock}px`
     element.style.height = `${sizePlayBlock}px`
+
     const randomPosition = Math.floor(Math.random() * 620) 
     element.style.transform = `translateX(${randomPosition}px)`
-    element.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16)
+    let randomBgcolor = Math.floor(Math.random() * 16777215).toString(16)
+    if (randomBgcolor.length != 6) {
+        randomBgcolor = randomBgcolor + '1'
+    }
+    element.style.backgroundColor = '#' + randomBgcolor
 }
 
 const handleStartGame = (countBlocks) => {
-    let sizePlayBlock = sizeInput.value ? sizeInput.value : 1
+    let sizePlayBlock = sizeInput.value
     for (let i = 0; i < countBlocks; i++) {
         playField.innerHTML += '<div class="play-block rounded shadow m-1"></div>'
     }
@@ -98,6 +103,8 @@ const handleWindowResult = () => {
 
 btnStartPause.addEventListener('click', () => {
     sizeInput.setAttribute('disabled', 'true')
+    if (!sizeInput.value) sizeInput.value = 1
+
     if (runTime == -1) {
         handleStartGame(countBlocks = 10)
         btnStartPause.innerHTML = 'Pause'
