@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .play-block {
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .modal {
+            background-color: rgba(136, 141, 130, 0.8);
+            opacity: 0; 
+            z-index: -1;
+        }
+        #play-field {
+            height: 500px; 
+            overflow: hidden;
+        }
+        #play-field-blocker {
+          top: 0;
+          left: 0;
+          background-color: #0000006b;
+          z-index: 50;
+        }
+        #player-list {
+          height: 500px;
+          overflow: auto;
+        }
+    </style>
+    <title>Game</title>
+</head>
+<body>
+    <h1 class="text-center my-5">"Убери кубики"</h1>
+    <main>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-3 d-flex align-items-center">
+                        <button id="btn-start" class="btn btn-primary w-100" type="button">Start</button>
+                    </div>
+                    <div class="col-3 d-flex align-items-center">
+                        <button id="btn-new-game" class="btn btn-warning w-100" type="button">New game</button>
+                    </div>
+                    <div class="col-2 d-flex flex-column">
+                        <span class="text-muted">
+                            <small>Size</small> 
+                        </span>
+                        <div class="input-group mb-3">
+                            <input id="size-input" type="text" class="form-control" value="1" maxlength="1">
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex flex-column">
+                        <span class="text-muted">
+                            <small>Points</small> 
+                        </span>
+                        <div class="input-group mb-3">
+                            <input id="point-output" type="text" class="form-control" disabled value="0">
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex flex-column">
+                        <span class="text-muted">
+                            <small>Time</small> 
+                        </span>
+                        <div class="input-group mb-3">
+                            <input id="timer" type="text" disabled class="form-control" value="01:00">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-8">
+                        <div id="play-field" class="rounded bg-success position-relative p-2">
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <h3 class="text-center">Players</h3>
+                        <button id="btn-clear-results" class="btn btn-outline-primary w-100 mb-3" type="button">Clear results</button>
+                        <div id="player-list"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal fade show d-block" id="exampleModal" data-toggle="modal">
+      <div class="modal-dialog" id="modal-window" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title"">Game over</h5>
+          </div>
+          <div class="modal-body">
+            <span id="current-result"></span>
+            <form id="result-form">
+              <div class="input-group my-3">
+                <input type="text" name="username" required class="form-control" placeholder="Your name">
+              </div>
+              <button type="submit" class="btn btn-success w-100">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="main.js"></script>
+</body>
+</html>
