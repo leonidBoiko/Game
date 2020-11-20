@@ -10,7 +10,7 @@ const playerList = document.getElementById('player-list');
 const sizeInput = document.getElementById('size-input');
 
 let point = 0;
-let time = 01;
+let time = 60;
 let runTime = -1;
 
 function updateTimer() {
