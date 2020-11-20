@@ -1,16 +1,16 @@
-const btnStartPause = document.getElementById('btn-start')
-const pointOutput = document.getElementById('point-output')
-const modal = document.querySelector('.modal')
-const resultForm = document.getElementById('result-form')
-const timer = document.getElementById('timer')
-const btnNewGame = document.getElementById('btn-new-game')
-const playField = document.getElementById('play-field')
-const btnClearResults = document.getElementById('btn-clear-results')
-const playerList = document.getElementById('player-list')
-const sizeInput = document.getElementById('size-input')
+const btnStartPause = document.getElementById('btn-start');
+const pointOutput = document.getElementById('point-output');
+const modal = document.querySelector('.modal');
+const resultForm = document.getElementById('result-form');
+const timer = document.getElementById('timer');
+const btnNewGame = document.getElementById('btn-new-game');
+const playField = document.getElementById('play-field');
+const btnClearResults = document.getElementById('btn-clear-results');
+const playerList = document.getElementById('player-list');
+const sizeInput = document.getElementById('size-input');
 
 let point = 0;
-let time = 60;
+let time = 01;
 let runTime = -1;
 
 function updateTimer() {
@@ -34,7 +34,6 @@ const handleFormSubmit = (e) => {
     const elementIndex = players.findIndex(el => el.name == username)
     if (elementIndex != -1) {
         players[elementIndex].points.push(point)
-        console.log(players[elementIndex]);
     } else {
         players.push({name:username, points:[point]})
     }
@@ -78,11 +77,11 @@ const setStyleToPlayBlock = (element, sizePlayBlock) => {
 }
 
 const handleStartGame = (countBlocks) => {
-    let sizePlayBlock = sizeInput.value
+    let sizePlayBlock = sizeInput.value;
     for (let i = 0; i < countBlocks; i++) {
         playField.innerHTML += '<div class="play-block rounded shadow m-1"></div>'
     }
-    const playBlocks = document.querySelectorAll('.play-block') 
+    const playBlocks = document.querySelectorAll('.play-block');
     playBlocks.forEach((element, index) => {
         if (countBlocks == 10) {
             setStyleToPlayBlock(element, sizePlayBlock)
@@ -118,7 +117,7 @@ btnStartPause.addEventListener('click', () => {
         btnStartPause.classList.remove('bg-danger')
         clearInterval(runTime)
         runTime = -1
-        return 
+        return;
     }
 })
 sizeInput.addEventListener('keypress', (e) => {
