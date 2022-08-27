@@ -1,0 +1,23 @@
+.play-block {
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.modal {
+  background-color: rgba(136, 141, 130, 0.8);
+  opacity: 0; 
+  z-index: -1;
+}
+#play-field {
+  height: 500px; 
+  overflow: hidden;
+}
+#play-field-blocker {
+top: 0;
+left: 0;
+background-color: #0000006b;
+z-index: 50;
+}
+#player-list {
+height: 500px;
+overflow: auto;
+}
